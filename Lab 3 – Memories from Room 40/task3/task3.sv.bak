@@ -1,0 +1,27 @@
+`timescale 1ps / 1ps
+
+module task3(input logic CLOCK_50, input logic [3:0] KEY, input logic [9:0] SW,
+             output logic [6:0] HEX0, output logic [6:0] HEX1, output logic [6:0] HEX2,
+             output logic [6:0] HEX3, output logic [6:0] HEX4, output logic [6:0] HEX5,
+             output logic [9:0] LEDR);
+
+    // your code here
+    reg[7:0] address_ct;
+    reg [7:0] data_ct = 0;
+    reg wren = 0;
+    reg [7:0] read_data_ct;
+
+    ct_mem ct(
+        .address(address_ct),
+        .clock(CLOCK_50),
+        .data(data_ct),
+        .wren(wren),
+        .q(read_data_ct)
+    );
+    
+    pt_mem pt( /* connect ports */ );
+    arc4 a4( /* connect ports */ );
+
+    // your code here
+
+endmodule: task3
