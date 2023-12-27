@@ -1,0 +1,138 @@
+`define ACE 7'b0001000
+`define TWO 7'b0100100
+`define THREE 7'b0110000
+`define FOUR 7'b0011001
+`define FIVE 7'b0010010
+`define SIX 7'b0000010
+`define SEVEN 7'b1111000
+`define EIGHT 7'b0000000
+`define NINE 7'b0010000 
+`define TEN 7'b1000000
+`define JACK 7'b1100001
+`define QUEEN 7'b0011000
+`define KING 7'b0001001
+`define BLANK 7'b1111111
+
+module tb_card7seg();
+
+// Your testbench goes here. Make sure your tests exercise the entire design
+// in the .sv file.  Note that in our tests the simulator will exit after
+// 10,000 ticks (equivalent to "initial #10000 $finish();").
+	reg[3:0] SW;
+	wire[6:0] HEX0;
+
+	// instantiate the module
+	card7seg cardModule(.SW(SW), .HEX0(HEX0));
+
+	initial begin
+
+
+		// Test when SW is 1,2,3,4,5,6,7,8,9,10,11,12,13.
+		
+		SW = 4'b0001;
+		#10
+		if(HEX0 != `ACE) begin
+			$display("Test Failed. Expected HEX0: %b Actual: %b", `ACE, HEX0);
+		end
+		else begin $display("Test Passed for ace"); end
+		
+		
+		SW = 4'b0010;
+		#10
+		if(HEX0 != `TWO) begin
+			$display("Test Failed. Expected HEX0: %b Actual: %b", `TWO, HEX0);
+		end
+		else begin $display("Test Passed for two"); end
+		
+		
+		SW = 4'b0011;
+		#10
+		if (HEX0 != `THREE) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `THREE, HEX0); end
+		else begin $display("Test Passed for 3"); end
+
+		
+		SW = 4'b0100;
+		#10
+		if (HEX0 != `FOUR) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `FOUR, HEX0);  end
+		else begin $display("Test Passed for 4"); end
+
+		
+		SW = 4'b0101;
+		#10
+		if (HEX0 != `FIVE) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `FIVE, HEX0);  end
+		else begin $display("Test Passed for 5"); end
+
+		SW = 4'b0110;
+		#10
+		if (HEX0 != `SIX) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `SIX, HEX0); end
+		else begin $display("Test Passed for 6"); end
+
+		
+		SW = 4'b0111;
+		#10
+		if (HEX0 != `SEVEN) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `SEVEN, HEX0); end
+		else begin $display("Test Passed for 7"); end
+
+		
+		SW = 4'b1000;
+		#10
+		if (HEX0 != `EIGHT) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `EIGHT, HEX0); end
+		else begin $display("Test Passed for 8"); end
+
+		
+		SW = 4'b1001;
+		#10
+		if (HEX0 != `NINE) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `NINE, HEX0); end
+		else begin $display("Test Passed for 9"); end
+
+
+		SW = 4'b1010;
+		#10
+		if (HEX0 != `TEN) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `TEN, HEX0); end
+		else begin $display("Test Passed for 10"); end
+
+
+		SW = 4'b1011;
+		#10
+		if (HEX0 != `JACK) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `JACK, HEX0); end
+		else begin $display("Test Passed for JACK"); end
+
+
+		SW = 4'b1100;
+		#10
+		if (HEX0 != `QUEEN) begin $display("Test Failed. Expected HEX0: %b Actual: %b", `QUEEN, HEX0);  end
+		else begin $display("Test Passed for queen"); end
+
+
+		SW = 4'b1101;
+		#10
+		if (HEX0 != `KING) begin $display("Test Failed. Expected HEX0: %b Actual: %b",`KING, HEX0);  end
+		else begin $display("Test Passed for king"); end
+
+		// Test for blank
+		SW = 4'b0000;
+		#10
+		if(HEX0 != `BLANK) begin
+			$display("Test Failed. Expected HEX0: " + `BLANK + "Actual: " + HEX0);
+		end
+		else begin $display("Test Passed for Blank"); end
+		
+		SW = 4'b1110;
+		#10
+		if(HEX0 != `BLANK) begin
+			$display("Test Failed. Expected HEX0: " + `BLANK + "Actual: " + HEX0);
+		end
+		else begin $display("Test Passed for Blank"); end
+		
+		SW = 4'b1111;
+		#10
+		if(HEX0 != `BLANK) begin
+			$display("Test Failed. Expected HEX0: " + `BLANK + "Actual: " + HEX0);
+		end
+		else begin $display("Test Passed for Blank"); end
+
+
+	end
+						
+endmodule
+

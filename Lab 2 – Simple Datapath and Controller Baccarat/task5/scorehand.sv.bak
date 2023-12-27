@@ -1,0 +1,41 @@
+module scorehand(input [3:0] card1, input [3:0] card2, input [3:0] card3, output [3:0] total);
+
+// The code describing scorehand will go here.  Remember this is a combinational
+// block. The function is described in the handout.  Be sure to review the section
+// on representing numbers in the lecture notes.
+	wire[3:0] faceValue1;
+	wire[3:0] faceValue2;
+	wire[3:0] faceValue3;
+	wire[4:0] sum; // sum of face values can be 5 bits. For eg. 8 + 8 + 8 = 24. 24 needs 5 bits to be represented.
+
+	// instantiate faceValue module to get the facevalue of the card.
+	faceValue fv1 (card1, faceValue1);
+	faceValue fv2 (card2, faceValue2);
+	faceValue fv3 (card3, faceValue3);
+	assign sum = faceValue1 + faceValue2 + faceValue3;
+	assign total = sum % 10;
+	
+endmodule
+
+
+/**
+This module is used in the scorehand module to find the face value of a card. 
+card with number 1-9 has facevalue as the number itself
+But card with number 10, 11 (Jack), 12 (Queen), 13 (King) has 0.
+NOTE: 0, 14 and 15 are not-used values. 
+*/
+module faceValue(input[3:0] card, output[3:0] facevalue);
+	reg[3:0] value;
+	always @(card)
+		begin
+			// if card = 10, 11 (Jack), 12 (Queen), 13 (King) then face value is zero, otherwise it is what it is. 
+			if (card==4'b1010 || card == 4'b1011 || card == 4'b1101 || card == 4'b1100 || card == 4'b0000) begin
+				value = 4'b0000;
+			end
+			else begin
+				value = card;
+			end
+			
+		end
+	assign facevalue = value;
+endmodule
