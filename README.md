@@ -1,2 +1,3 @@
-# CPEN-311---Computer-Architecture-II-
-Code written for CPEN 311 class. I furthered my understanding of system verilog. The use of FSM, on chip and off chip memory with FPGA and etc. 
+# CPEN-311---Computer-Architecture-II
+These are the codes I wrote for the CPEN 311 class. 
+In this class, I furthered my understanding of system Verilog; FSM; On-Chip/ Off-Chip memory with FPGA; etc. 
